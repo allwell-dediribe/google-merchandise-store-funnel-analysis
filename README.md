@@ -53,7 +53,7 @@ Analyze user behavior on the Google Merchandise Store to identify the stage of t
 | **Source** | [Google BigQuery Public Datasets](https://console.cloud.google.com/bigquery) |
 | **Dataset** | `bigquery-public-data.ga4_obfuscated_sample_ecommerce.events_*` |
 | **Publisher** | Google (official GA4 sample export) |
-| **Access method** | BigQuery Sandbox (no billing account required) |
+| **Access method** | BigQuery Sandbox |
 | **Time window analyzed** | November 2020 |
 | **Raw rows extracted** | 173,191 event-level rows |
 | **Unique users** | 24,034 |
@@ -102,13 +102,19 @@ Cleaning was performed in **Power Query** after loading the CSV into Excel:
 | Duplicate check | Selected all columns → Remove Duplicates | Row count was **173,191 before and after** — confirms zero exact duplicate records |
 | Timestamp conversion | Custom column converting Unix microseconds to a readable date/time | Raw GA4 timestamps aren't human-readable by default |
 
+![Power_Query](Images/Power_Query.png)
+
 **Timestamp conversion formula:**
 
 ```
 #datetime(1970,1,1,0,0,0) + #duration(0,0,0,[event_timestamp]/1000000)
 ```
+![Datetime_Conversion](Images/Datetime_Conversion_Formula.png)
+![New_Datetime_Column](Images/New_Datetime_Column.png)
 
 The cleaned table was loaded into Excel **as a Table, added to the Data Model**. This step is what unlocks **Distinct Count** in PivotTables — without it, only a standard row count is available, which would inflate every funnel stage by counting repeat events instead of unique people.
+![Import_Data](Images/Import_Data.png)
+![Loaded_Data](Images/Loaded_Data.png)
 
 ### 3. Data Analysis
 
@@ -130,11 +136,7 @@ Total Purchasers := CALCULATE(
 Overall Conversion Rate := DIVIDE([Total Purchasers], [Total Visitors])
 ```
 
-These measures are pulled into the dashboard using `CUBEVALUE`, allowing KPI cards to display live values sourced directly from the Data Model without needing a full PivotTable on the dashboard sheet itself.
-
-```excel
-=CUBEVALUE("ThisWorkbookDataModel","[Measures].[Total Visitors]")
-```
+These measures are pulled into the dashboard using `Pivot Tables`, allowing KPI cards to display the live values.
 
 **Conversion and drop-off rate**, calculated manually beside the PivotTable:
 

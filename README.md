@@ -144,6 +144,7 @@ These measures are pulled into the dashboard using `Pivot Tables`, allowing KPI 
 Conversion Rate (stage n) = Users(stage n) / Users(stage n-1)
 Drop-off Rate (stage n)   = 1 - Conversion Rate (stage n)
 ```
+![Pivot Tables](Images/Pivot%20Tables.png)
 
 ### 4. Dashboard Development
 
@@ -155,6 +156,8 @@ A single-page Excel dashboard was built to communicate the findings to someone u
 - Funnel chart (built as a horizontal bar chart with outside-end data labels — Excel's native Funnel chart type couldn't display a label on the very thin `purchase` bar)
 - A conversion/drop-off rate table beside the chart
 - A short, specific data quality note explaining the `add_to_cart` anomaly
+
+![Excel_Dashboard](Images/Excel_Dashboard.png)
 
 **Workbook structure:**
 

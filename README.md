@@ -221,13 +221,13 @@ These recommendations are intentionally scoped to what this event-level dataset 
 
 ```
 ├── README.md
-├── data/
+├── Data/
 │   └── funnel_raw_export.csv          # raw BigQuery export (event-level)
-├── excel/
+├── Excel/
 │   └── Funnel_Analysis_Dashboard.xlsx # full workbook: raw data, PivotTable, dashboard
-├── docs/
+├── Documentation/
 │   └── Funnel_Analysis_Documentation.docx  # full written findings (brief-format)
-└── presentation/
+└── Presentation/
     └── Funnel_Analysis_Presentation.pptx   # stakeholder-facing summary deck
 ```
 
@@ -252,4 +252,3 @@ These recommendations are intentionally scoped to what this event-level dataset 
 - The dataset is a **sample**, not the store's full production traffic, and is obfuscated by Google for public release.
 - No device, geography, or traffic-source dimensions were extracted, limiting root-cause analysis of *why* drop-offs occur, only *where*.
 - `add_to_cart` tracking is demonstrably incomplete in this dataset and should not be used as a reliable funnel stage without further validation.
--
